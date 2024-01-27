@@ -1,3 +1,4 @@
+import 'package:e_commerce/app/model/product_model.dart';
 import 'package:e_commerce/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,33 +37,54 @@ class CategoryView extends GetView<CategoryController> {
       ),
       body: Padding(
         padding: EdgeInsets.all(8.w),
-        child: GridView.builder(
-          itemCount: 5,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 8.w,
-            mainAxisSpacing: 10.h,
-            mainAxisExtent: 250.h,
-          ),
-          itemBuilder: (BuildContext context, int index) {
-            return productContainer(
-              isButtonClicked: false,
-              addToCartTap: (){},
-              incrementTap: () {},
-              decrementTap: () {},
-              cartItem: 1,
-              proImage: "assets/images/apple.png",
-              proDiscountImage: "assets/images/discount.png",
-              proDiscount: "10% off",
-              plasticStatus: "Plastic Free",
-              proStockStatus: "In stock",
-              proName: "Carrot Fruit Fresh",
-              proAmount: "2kg",
-              proNewPrice: "124",
-              proOldPrice: "150",
-            );
-          },
-        ),
+        child: FutureBuilder<List<ProductModel>>(
+            future: controller.fetchedProduct(),
+            builder: (context, AsyncSnapshot<List<ProductModel>> snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                // Error state
+                return Center(child: Text('Error: ${snapshot.error}'));
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                // Empty data state
+                return const Center(child: Text('No data available'));
+              } else {
+                return GridView.builder(
+                  itemCount: snapshot.data!.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 8.w,
+                    mainAxisSpacing: 10.h,
+                    mainAxisExtent: 280.h,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    final data = snapshot.data![index];
+                    return productContainer(
+                      isButtonClicked: false,
+                      addToCartTap: () {},
+                      incrementTap: () {},
+                      decrementTap: () {},
+                      cartItem: 1,
+                      proImage: "assets/images/apple.png",
+                      proDiscountImage: "assets/images/discount.png",
+                      proDiscount: data.discountType == "percentage"
+                          ? "${data.discountAmount}% OFF"
+                          : data.discountType == "fixedAmount"
+                              ? "TAKA ${data.discountAmount} OFF"
+                              : null,
+                      plasticStatus: data.isPlastic!
+                          ? data.plasticType!.name!
+                          : "PLASTIC FREE",
+                      proStock: data.quantity!,
+                      proName: "${data.name}",
+                      proWeight: data.productWeight,
+                      proNewPrice: "${data.price}",
+                      proOldPrice: "150",
+                    );
+                  },
+                );
+              }
+            }),
       ),
     );
   }

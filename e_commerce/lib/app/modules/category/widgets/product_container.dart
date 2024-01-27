@@ -14,9 +14,9 @@ Widget productContainer({
   required String proDiscountImage,
   required String? proDiscount,
   required String plasticStatus,
-  required String? proStockStatus,
+  required int proStock,
   required String proName,
-  required String proAmount,
+  required String? proWeight,
   required String proNewPrice,
   required String proOldPrice,
 }) {
@@ -32,7 +32,7 @@ Widget productContainer({
         Stack(
           alignment: Alignment.topRight,
           children: [
-            ///product image
+            ///product image || discount
             Container(
               height: 140.h,
               alignment: Alignment.topRight,
@@ -138,6 +138,7 @@ Widget productContainer({
           ],
         ),
 
+        ///product plastic status
         Align(
           alignment: Alignment.bottomRight,
           child: Container(
@@ -147,7 +148,7 @@ Widget productContainer({
               borderRadius: BorderRadius.circular(4.r),
             ),
             child: Text(
-              "Plastic Free",
+              plasticStatus,
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w700,
@@ -156,23 +157,27 @@ Widget productContainer({
           ),
         ),
 
-        ///product status
+        ///product stock status
         Text(
-          proStockStatus ?? "",
+          proStock <= 0 ? "" : "IN STOCK",
           style: TextStyle(
             color: AppColors.pirmaryColor,
             fontWeight: FontWeight.w700,
+            fontSize: 12.sp,
           ),
         ),
 
         ///product name
         Text(
           proName,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
           style: const TextStyle(fontWeight: FontWeight.w700),
         ),
 
+        ///product weight
         Text(
-          proAmount,
+          proWeight == "null" ? "" : proWeight.toString(),
           style: TextStyle(
             fontWeight: FontWeight.w700,
             fontSize: 12.sp,
