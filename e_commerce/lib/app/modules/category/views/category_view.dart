@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:e_commerce/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +7,8 @@ import 'package:get/get.dart';
 
 import '../controllers/category_controller.dart';
 import '../widgets/category_action_icon.dart';
+
+import '../widgets/product_container.dart';
 
 class CategoryView extends GetView<CategoryController> {
   const CategoryView({Key? key}) : super(key: key);
@@ -32,8 +36,30 @@ class CategoryView extends GetView<CategoryController> {
           SizedBox(width: 5.w),
         ],
       ),
-      body: const Column(
-        children: [],
+      body: Padding(
+        padding: EdgeInsets.all(8.w),
+        child: GridView.builder(
+          itemCount: 5,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 8.w,
+            mainAxisSpacing: 10.h,
+            mainAxisExtent: 250.h,
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            return productContainer(
+              proImage: "assets/images/carrot.png",
+              proDiscountImage: "assets/images/discount.png",
+              proDiscount: "10% off",
+              plasticStatus: "Plastic Free",
+              proStockStatus: "In stock",
+              proName: "Carrot Fruit Fresh",
+              proAmount: "2kg",
+              proNewPrice: "124",
+              proOldPrice: "150",
+            );
+          },
+        ),
       ),
     );
   }
