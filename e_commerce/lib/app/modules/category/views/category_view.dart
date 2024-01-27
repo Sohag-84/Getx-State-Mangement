@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:e_commerce/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,8 +47,10 @@ class CategoryView extends GetView<CategoryController> {
           itemBuilder: (BuildContext context, int index) {
             return productContainer(
               isButtonClicked: false,
-              incrementTap: (){},
-              decrementTap: (){},
+              addToCartTap: (){},
+              incrementTap: () {},
+              decrementTap: () {},
+              cartItem: 1,
               proImage: "assets/images/apple.png",
               proDiscountImage: "assets/images/discount.png",
               proDiscount: "10% off",

@@ -8,6 +8,8 @@ Widget productContainer({
   required bool isButtonClicked,
   required VoidCallback incrementTap,
   required VoidCallback decrementTap,
+  required VoidCallback addToCartTap,
+  required int cartItem,
   required String proImage,
   required String proDiscountImage,
   required String? proDiscount,
@@ -26,7 +28,6 @@ Widget productContainer({
     ),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Stack(
           alignment: Alignment.topRight,
@@ -71,41 +72,68 @@ Widget productContainer({
             ///cart
             Align(
               alignment: Alignment.topLeft,
-              child: Container(
-                width: 150.w,
-                height: 35.h,
-                padding: EdgeInsets.symmetric(horizontal: 5.w),
-                decoration: BoxDecoration(
-                  color: AppColors.pirmaryColor,
-                  borderRadius: BorderRadius.circular(12.r),
-                  border: Border.all(
-                    color: AppColors.redAccentColor,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: incrementTap,
-                      child: Icon(
-                        Icons.add,
-                        color: AppColors.whiteColor,
+              child: isButtonClicked
+                  ? Container(
+                      width: 150.w,
+                      height: 35.h,
+                      padding: EdgeInsets.symmetric(horizontal: 5.w),
+                      decoration: BoxDecoration(
+                        color: AppColors.pirmaryColor,
+                        borderRadius: BorderRadius.circular(12.r),
+                        border: Border.all(
+                          color: AppColors.redAccentColor,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: incrementTap,
+                            child: Icon(
+                              Icons.add,
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                          Text(
+                            "$cartItem",
+                            style: TextStyle(color: AppColors.whiteColor),
+                          ),
+                          InkWell(
+                            onTap: decrementTap,
+                            child: Icon(
+                              CupertinoIcons.minus,
+                              color: AppColors.whiteColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : InkWell(
+                      onTap: addToCartTap,
+                      child: Container(
+                        height: 40.h,
+                        width: 40.w,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: AppColors.pirmaryColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: cartItem == 0
+                            ? Icon(
+                                Icons.add,
+                                color: AppColors.whiteColor,
+                                size: 30.h,
+                              )
+                            : Text(
+                                "$cartItem",
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.whiteColor,
+                                ),
+                              ),
                       ),
                     ),
-                    Text(
-                      "123",
-                      style: TextStyle(color: AppColors.whiteColor),
-                    ),
-                    InkWell(
-                      onTap: decrementTap,
-                      child: Icon(
-                        CupertinoIcons.minus,
-                        color: AppColors.whiteColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ),
           ],
         ),
