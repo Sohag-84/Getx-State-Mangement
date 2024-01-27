@@ -1,5 +1,7 @@
 // ignore_for_file: unrelated_type_equality_checks
 
+import 'package:e_commerce/app/modules/category/views/category_view.dart';
+import 'package:e_commerce/app/modules/home/views/home_view.dart';
 import 'package:e_commerce/constant/app_colors.dart';
 import 'package:e_commerce/constant/app_strings.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +16,8 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
   const BottomNavBarView({Key? key}) : super(key: key);
 
   final pageList = const [
-    Center(
-      child: Text("Home"),
-    ),
-    Center(
-      child: Text("Category"),
-    ),
+    HomeView(),
+    CategoryView(),
     Center(
       child: Text("Search"),
     ),
@@ -30,10 +28,6 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('BottomNavBarView'),
-        centerTitle: true,
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
         height: 70.h,
