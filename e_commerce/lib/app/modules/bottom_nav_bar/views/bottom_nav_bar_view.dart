@@ -84,50 +84,58 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              //home
               Expanded(
                 flex: 1,
                 child: navbarIcon(
                   onTap: () {
                     controller.onItemTapped(index: 0);
                   },
+                  icon: Icons.home_sharp,
                   label: home,
                   color: controller.currentIndex == 0
                       ? AppColors.pirmaryColor
                       : AppColors.greyColor,
                 ),
               ),
+              //category
               Expanded(
                 flex: 1,
                 child: navbarIcon(
                   onTap: () {
                     controller.onItemTapped(index: 1);
                   },
-                  label: home,
+                  icon: Icons.dashboard,
+                  label: category,
                   color: controller.currentIndex == 1
                       ? AppColors.pirmaryColor
                       : AppColors.greyColor,
                 ),
               ),
               Expanded(flex: 1, child: Container()),
+              //search
               Expanded(
                 flex: 1,
                 child: navbarIcon(
                   onTap: () {
                     controller.onItemTapped(index: 2);
                   },
-                  label: home,
+                  icon: Icons.search,
+                  label: search,
                   color: controller.currentIndex == 2
                       ? AppColors.pirmaryColor
                       : AppColors.greyColor,
                 ),
               ),
+              //menu
               Expanded(
                 flex: 1,
                 child: navbarIcon(
                   onTap: () {
                     controller.onItemTapped(index: 3);
                   },
-                  label: home,
+                  icon: Icons.menu,
+                  label: menu,
                   color: controller.currentIndex == 3
                       ? AppColors.pirmaryColor
                       : AppColors.greyColor,
@@ -145,6 +153,7 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
 
   InkWell navbarIcon({
     required VoidCallback onTap,
+    required IconData icon,
     required String label,
     required Color color,
   }) {
@@ -153,7 +162,7 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
       child: Column(
         children: [
           Icon(
-            Icons.person,
+            icon,
             size: 25,
             color: color,
           ),
