@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../controllers/bottom_nav_bar_controller.dart';
+import 'package:badges/badges.dart' as badges;
 
 class BottomNavBarView extends GetView<BottomNavBarController> {
   const BottomNavBarView({Key? key}) : super(key: key);
@@ -34,18 +35,51 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
         centerTitle: true,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        elevation: 2.0,
-        foregroundColor: Colors.white,
-        backgroundColor: AppColors.pirmaryColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.r),
+      floatingActionButton: Container(
+        height: 70.h,
+        width: 70.w,
+        decoration: BoxDecoration(
+          color: AppColors.pirmaryColor,
+          shape: BoxShape.circle,
         ),
-        child: const Icon(Icons.camera, size: 25),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            badges.Badge(
+              position: badges.BadgePosition.topEnd(top: -10, end: -12),
+              badgeContent: Text(
+                '3',
+                style: TextStyle(
+                  color: AppColors.pirmaryColor,
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              badgeStyle: badges.BadgeStyle(
+                badgeColor: AppColors.whiteColor,
+              ),
+              child: Icon(
+                Icons.shopping_cart_outlined,
+                color: AppColors.whiteColor,
+                size: 25.h,
+              ),
+            ),
+            Text(
+              '৳ 220',
+              style: TextStyle(
+                color: AppColors.whiteColor,
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 8.h),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
+        color: Colors.white,
+        elevation: 1,
         child: Obx(() {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
