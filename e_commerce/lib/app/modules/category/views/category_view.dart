@@ -48,7 +48,10 @@ class CategoryView extends GetView<CategoryController> {
           ),
           itemBuilder: (BuildContext context, int index) {
             return productContainer(
-              proImage: "assets/images/carrot.png",
+              isButtonClicked: false,
+              incrementTap: (){},
+              decrementTap: (){},
+              proImage: "assets/images/apple.png",
               proDiscountImage: "assets/images/discount.png",
               proDiscount: "10% off",
               plasticStatus: "Plastic Free",

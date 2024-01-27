@@ -1,9 +1,13 @@
 import 'package:e_commerce/constant/app_colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:math' as math;
 
 Widget productContainer({
+  required bool isButtonClicked,
+  required VoidCallback incrementTap,
+  required VoidCallback decrementTap,
   required String proImage,
   required String proDiscountImage,
   required String? proDiscount,
@@ -68,14 +72,38 @@ Widget productContainer({
             Align(
               alignment: Alignment.topLeft,
               child: Container(
-                width: 140.w,
-                height: 30.h,
+                width: 150.w,
+                height: 35.h,
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
                 decoration: BoxDecoration(
                   color: AppColors.pirmaryColor,
                   borderRadius: BorderRadius.circular(12.r),
                   border: Border.all(
-                    color: AppColors.pirmaryColor,
+                    color: AppColors.redAccentColor,
                   ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: incrementTap,
+                      child: Icon(
+                        Icons.add,
+                        color: AppColors.whiteColor,
+                      ),
+                    ),
+                    Text(
+                      "123",
+                      style: TextStyle(color: AppColors.whiteColor),
+                    ),
+                    InkWell(
+                      onTap: decrementTap,
+                      child: Icon(
+                        CupertinoIcons.minus,
+                        color: AppColors.whiteColor,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
