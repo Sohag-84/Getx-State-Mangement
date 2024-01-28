@@ -57,7 +57,7 @@ class ProductModel {
   final dynamic weight;
   final String? discountType;
   final dynamic discountAmount;
-  int proQuantity;
+  int proQuantity = 1;
   dynamic totalPrice;
   bool isBtnClicked;
 

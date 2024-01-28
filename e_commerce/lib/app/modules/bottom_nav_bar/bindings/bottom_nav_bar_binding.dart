@@ -1,6 +1,7 @@
 import 'package:e_commerce/app/modules/category/controllers/category_controller.dart';
 import 'package:get/get.dart';
 
+import '../../cart/controllers/cart_controller.dart';
 import '../controllers/bottom_nav_bar_controller.dart';
 
 class BottomNavBarBinding extends Bindings {
@@ -11,6 +12,9 @@ class BottomNavBarBinding extends Bindings {
     );
     Get.lazyPut<CategoryController>(
       () => CategoryController(),
+    );
+    Get.lazyPut<CartController>(
+      () => CartController(),
     );
   }
 }

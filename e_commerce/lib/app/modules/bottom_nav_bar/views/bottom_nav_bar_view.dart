@@ -1,5 +1,6 @@
 // ignore_for_file: unrelated_type_equality_checks
 
+import 'package:e_commerce/app/modules/cart/controllers/cart_controller.dart';
 import 'package:e_commerce/app/modules/category/views/category_view.dart';
 import 'package:e_commerce/app/modules/home/views/home_view.dart';
 import 'package:e_commerce/constant/app_colors.dart';
@@ -30,7 +31,7 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: InkWell(
-        onTap: (){
+        onTap: () {
           Get.toNamed("/cart");
         },
         child: Container(
@@ -40,40 +41,44 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
             color: AppColors.pirmaryColor,
             shape: BoxShape.circle,
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              badges.Badge(
-                position: badges.BadgePosition.topEnd(top: -10, end: -12),
-                badgeContent: Text(
-                  '3',
-                  style: TextStyle(
-                    color: AppColors.pirmaryColor,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                badgeStyle: badges.BadgeStyle(
-                  badgeColor: AppColors.whiteColor,
-                ),
-                child: Icon(
-                  Icons.shopping_cart_outlined,
-                  color: AppColors.whiteColor,
-                  size: 25.h,
-                ),
-              ),
-              Text(
-                '৳ 220',
-                style: TextStyle(
-                  color: AppColors.whiteColor,
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              SizedBox(height: 8.h),
-            ],
-          ),
+          child: GetBuilder(
+              init: CartController(),
+              builder: (CartController cartController) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    badges.Badge(
+                      position: badges.BadgePosition.topEnd(top: -10, end: -12),
+                      badgeContent: Text(
+                        cartController.box.values.toList().length.toString(),
+                        style: TextStyle(
+                          color: AppColors.pirmaryColor,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      badgeStyle: badges.BadgeStyle(
+                        badgeColor: AppColors.whiteColor,
+                      ),
+                      child: Icon(
+                        Icons.shopping_cart_outlined,
+                        color: AppColors.whiteColor,
+                        size: 25.h,
+                      ),
+                    ),
+                    Text(
+                      '৳ 220',
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                  ],
+                );
+              }),
         ),
       ),
       bottomNavigationBar: BottomAppBar(

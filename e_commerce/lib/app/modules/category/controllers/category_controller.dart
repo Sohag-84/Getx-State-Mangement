@@ -20,25 +20,4 @@ class CategoryController extends GetxController {
       throw Exception(e.toString());
     }
   }
-
-  void increaseQuantity(ProductModel product) {
-    product.proQuantity++;
-    update();
-  }
-
-  void decreaseQuantity(ProductModel product) {
-    if (product.proQuantity > 1) {
-      product.proQuantity--;
-      update();
-    }
-  }
-
-  void isButtonClicked(ProductModel product) {
-    product.isBtnClicked = true;
-    Future.delayed(const Duration(seconds: 5), () {
-      product.isBtnClicked = false;
-      update();
-    });
-    update();
-  }
 }
