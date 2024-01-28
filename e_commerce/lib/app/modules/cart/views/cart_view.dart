@@ -10,6 +10,7 @@ import '../../../data/database/hive_model.dart';
 import '../controllers/cart_controller.dart';
 import '../widgets/cart_item.dart';
 import '../widgets/checkout_container.dart';
+import '../widgets/discount_indicator.dart';
 
 class CartView extends GetView<CartController> {
   const CartView({Key? key}) : super(key: key);
@@ -38,6 +39,12 @@ class CartView extends GetView<CartController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              discountIndicator(
+                price: "2345",
+                percentage: .5,
+              ),
+
+              SizedBox(height: 10.h),
               Text(
                 "Added Items (${controller.box.values.toList().length} items)",
                 style: TextStyle(
@@ -69,7 +76,7 @@ class CartView extends GetView<CartController> {
                             deleteTap: () {
                               controller.deleteCartItem(product: product);
                             },
-                            proImage: AppConfig.imgBaseURL+product.image!,
+                            proImage: AppConfig.imgBaseURL + product.image!,
                             proName: "${product.name}",
                             cartItemCount: controller.quantity(id: product.id),
                             proPrice: "${product.price}",
