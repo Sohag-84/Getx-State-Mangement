@@ -36,17 +36,15 @@ class CategoryView extends GetView<CategoryController> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.all(8.w),
+        padding: EdgeInsets.all(10.w),
         child: FutureBuilder<List<ProductModel>>(
             future: controller.fetchedProduct(),
             builder: (context, AsyncSnapshot<List<ProductModel>> snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
-                // Error state
                 return Center(child: Text('Error: ${snapshot.error}'));
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                // Empty data state
                 return const Center(child: Text('No data available'));
               } else {
                 return GridView.builder(

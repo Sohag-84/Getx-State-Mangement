@@ -88,9 +88,9 @@ Widget productContainer({
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InkWell(
-                            onTap: incrementTap,
+                            onTap: decrementTap,
                             child: Icon(
-                              Icons.add,
+                              CupertinoIcons.minus,
                               color: AppColors.whiteColor,
                             ),
                           ),
@@ -99,9 +99,9 @@ Widget productContainer({
                             style: TextStyle(color: AppColors.whiteColor),
                           ),
                           InkWell(
-                            onTap: decrementTap,
+                            onTap: incrementTap,
                             child: Icon(
-                              CupertinoIcons.minus,
+                              Icons.add,
                               color: AppColors.whiteColor,
                             ),
                           ),

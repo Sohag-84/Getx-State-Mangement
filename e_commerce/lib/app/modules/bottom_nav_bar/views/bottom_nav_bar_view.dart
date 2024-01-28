@@ -29,46 +29,51 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        height: 70.h,
-        width: 70.w,
-        decoration: BoxDecoration(
-          color: AppColors.pirmaryColor,
-          shape: BoxShape.circle,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            badges.Badge(
-              position: badges.BadgePosition.topEnd(top: -10, end: -12),
-              badgeContent: Text(
-                '3',
+      floatingActionButton: InkWell(
+        onTap: (){
+          Get.toNamed("/cart");
+        },
+        child: Container(
+          height: 70.h,
+          width: 70.w,
+          decoration: BoxDecoration(
+            color: AppColors.pirmaryColor,
+            shape: BoxShape.circle,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              badges.Badge(
+                position: badges.BadgePosition.topEnd(top: -10, end: -12),
+                badgeContent: Text(
+                  '3',
+                  style: TextStyle(
+                    color: AppColors.pirmaryColor,
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                badgeStyle: badges.BadgeStyle(
+                  badgeColor: AppColors.whiteColor,
+                ),
+                child: Icon(
+                  Icons.shopping_cart_outlined,
+                  color: AppColors.whiteColor,
+                  size: 25.h,
+                ),
+              ),
+              Text(
+                '৳ 220',
                 style: TextStyle(
-                  color: AppColors.pirmaryColor,
-                  fontSize: 12.sp,
+                  color: AppColors.whiteColor,
+                  fontSize: 13.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              badgeStyle: badges.BadgeStyle(
-                badgeColor: AppColors.whiteColor,
-              ),
-              child: Icon(
-                Icons.shopping_cart_outlined,
-                color: AppColors.whiteColor,
-                size: 25.h,
-              ),
-            ),
-            Text(
-              '৳ 220',
-              style: TextStyle(
-                color: AppColors.whiteColor,
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(height: 8.h),
-          ],
+              SizedBox(height: 8.h),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomAppBar(
