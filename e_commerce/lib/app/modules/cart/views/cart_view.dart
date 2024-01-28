@@ -1,4 +1,5 @@
 import 'package:e_commerce/app/data/database/box_class.dart';
+import 'package:e_commerce/config/app_config.dart';
 import 'package:e_commerce/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,7 +58,7 @@ class CartView extends GetView<CartController> {
                       itemBuilder: (context, index) {
                         final product = data[index];
                         return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8.w),
+                          padding: EdgeInsets.symmetric(vertical: 10.w),
                           child: cartItem(
                             incrementTap: () {
                               controller.increaseQuantity(id: product.id);
@@ -68,7 +69,7 @@ class CartView extends GetView<CartController> {
                             deleteTap: () {
                               controller.deleteCartItem(product: product);
                             },
-                            proImage: "assets/images/carrot.png",
+                            proImage: AppConfig.imgBaseURL+product.image!,
                             proName: "${product.name}",
                             cartItemCount: controller.quantity(id: product.id),
                             proPrice: "${product.price}",

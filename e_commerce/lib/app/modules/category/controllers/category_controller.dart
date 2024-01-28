@@ -1,12 +1,13 @@
 import 'dart:convert';
 
 import 'package:e_commerce/app/model/product_model.dart';
+import 'package:e_commerce/config/app_config.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class CategoryController extends GetxController {
   Future<List<ProductModel>> fetchedProduct() async {
-    String url = "https://backend-test.bazar365.com/api/productGroup/products";
+    String url = "${AppConfig.baseURL}productGroup/products";
 
     try {
       http.Response response = await http.get(Uri.parse(url));

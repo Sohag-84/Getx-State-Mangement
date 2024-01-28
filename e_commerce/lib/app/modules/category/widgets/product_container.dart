@@ -38,7 +38,7 @@ Widget productContainer({
               alignment: Alignment.topRight,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(proImage),
+                  image: NetworkImage(proImage),
                 ),
               ),
               child: proDiscount == null

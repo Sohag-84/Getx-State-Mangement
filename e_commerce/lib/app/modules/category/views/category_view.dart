@@ -1,5 +1,6 @@
 import 'package:e_commerce/app/model/product_model.dart';
 import 'package:e_commerce/app/modules/cart/controllers/cart_controller.dart';
+import 'package:e_commerce/config/app_config.dart';
 
 import 'package:e_commerce/constant/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +76,7 @@ class CategoryView extends GetView<CategoryController> {
                               cartController.decreaseQuantity(id: data.id!);
                             },
                             cartItem: cartController.quantity(id: data.id!),
-                            proImage: "assets/images/apple.png",
+                            proImage: AppConfig.imgBaseURL + data.image!,
                             proDiscountImage: "assets/images/discount.png",
                             proDiscount: data.discountType == "percentage"
                                 ? "${data.discountAmount}% OFF"
