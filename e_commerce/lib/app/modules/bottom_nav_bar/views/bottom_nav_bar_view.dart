@@ -14,9 +14,9 @@ import '../controllers/bottom_nav_bar_controller.dart';
 import 'package:badges/badges.dart' as badges;
 
 class BottomNavBarView extends GetView<BottomNavBarController> {
-  const BottomNavBarView({Key? key}) : super(key: key);
+   BottomNavBarView({Key? key}) : super(key: key);
 
-  final pageList = const [
+  final pageList =  [
     HomeView(),
     CategoryView(),
     Center(

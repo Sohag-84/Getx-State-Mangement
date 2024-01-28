@@ -26,12 +26,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.BOTTOM_NAV_BAR,
-      page: () => const BottomNavBarView(),
+      page: () =>  BottomNavBarView(),
       binding: BottomNavBarBinding(),
     ),
     GetPage(
       name: _Paths.CATEGORY,
-      page: () => const CategoryView(),
+      page: () =>  CategoryView(),
       binding: CategoryBinding(),
     ),
     GetPage(
