@@ -17,6 +17,8 @@ class CartView extends GetView<CartController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CartController>(builder: (CartController controller) {
+      double amount = 1000 - controller.calculateSubtotal();
+
       return Scaffold(
         backgroundColor: AppColors.bgColor,
         appBar: AppBar(
@@ -39,10 +41,14 @@ class CartView extends GetView<CartController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              discountIndicator(
-                price: "2345",
-                percentage: .5,
-              ),
+              controller.box.values.toList().isEmpty
+                  ? const SizedBox()
+                  : discountIndicator(
+                      price: controller.calculateSubtotal() > 0 &&
+                              controller.calculateSubtotal() < 1000
+                          ? amount.toString()
+                          : "0",
+                    ),
 
               SizedBox(height: 10.h),
               Text(

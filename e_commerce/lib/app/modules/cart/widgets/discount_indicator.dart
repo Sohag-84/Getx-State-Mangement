@@ -5,9 +5,13 @@ import 'package:percent_indicator/percent_indicator.dart';
 
 Widget discountIndicator({
   required String price,
-  required double percentage,
 }) {
+  double amount = double.parse(price);
+  double percentage = amount <= 1000 ? (1000 - amount) / 1000 : 1.0;
+  percentage = percentage.clamp(0.0, 1.0);
+
   return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       RichText(
         text: TextSpan(

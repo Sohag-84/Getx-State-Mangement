@@ -88,7 +88,7 @@ class CartController extends GetxController {
     update();
   }
 
- //calculate subtotal
+  //calculate subtotal
   double calculateSubtotal() {
     double subtotal = 0.0;
     for (int i = 0; i < box.length; i++) {
