@@ -35,8 +35,9 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
           Get.toNamed("/cart");
         },
         child: Container(
-          height: 70.h,
-          width: 70.w,
+          height: 75.h,
+          width: 75.w,
+          alignment: Alignment.center,
           decoration: BoxDecoration(
             color: AppColors.pirmaryColor,
             shape: BoxShape.circle,
@@ -45,9 +46,10 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
               init: CartController(),
               builder: (CartController cartController) {
                 return Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(height: 8.h),
                     badges.Badge(
                       position: badges.BadgePosition.topEnd(top: -10, end: -12),
                       badgeContent: Text(
@@ -68,14 +70,13 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
                       ),
                     ),
                     Text(
-                      '৳ 220',
+                      '৳ ${cartController.calculateSubtotal()}',
                       style: TextStyle(
                         color: AppColors.whiteColor,
-                        fontSize: 13.sp,
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(height: 8.h),
                   ],
                 );
               }),

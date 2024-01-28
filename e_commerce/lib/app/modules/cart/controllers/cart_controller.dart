@@ -87,4 +87,15 @@ class CartController extends GetxController {
     await product.delete();
     update();
   }
+
+ //calculate subtotal
+  double calculateSubtotal() {
+    double subtotal = 0.0;
+    for (int i = 0; i < box.length; i++) {
+      final product = box.getAt(i);
+      subtotal += double.parse(product!.price.toString()) * product.quantity;
+    }
+
+    return subtotal;
+  }
 }
