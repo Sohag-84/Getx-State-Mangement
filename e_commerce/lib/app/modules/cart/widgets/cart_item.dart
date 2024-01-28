@@ -20,7 +20,7 @@ Widget cartItem({
           fit: BoxFit.fill,
         ),
 
-        SizedBox(width: 5.w),
+        SizedBox(width: 10.w),
 
         ///product name || item increment & decrement
         Expanded(
