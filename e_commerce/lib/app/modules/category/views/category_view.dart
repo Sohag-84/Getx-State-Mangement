@@ -1,4 +1,5 @@
 import 'package:e_commerce/app/model/product_model.dart';
+
 import 'package:e_commerce/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -57,28 +58,32 @@ class CategoryView extends GetView<CategoryController> {
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     final data = snapshot.data![index];
-                    return productContainer(
-                      isButtonClicked: false,
-                      addToCartTap: () {},
-                      incrementTap: () {},
-                      decrementTap: () {},
-                      cartItem: 1,
-                      proImage: "assets/images/apple.png",
-                      proDiscountImage: "assets/images/discount.png",
-                      proDiscount: data.discountType == "percentage"
-                          ? "${data.discountAmount}% OFF"
-                          : data.discountType == "fixedAmount"
-                              ? "TAKA ${data.discountAmount} OFF"
-                              : null,
-                      plasticStatus: data.isPlastic!
-                          ? data.plasticType!.name!
-                          : "PLASTIC FREE",
-                      proStock: data.quantity!,
-                      proName: "${data.name}",
-                      proWeight: data.productWeight,
-                      proNewPrice: "${data.price}",
-                      proOldPrice: "150",
-                    );
+                    return GetBuilder(builder: (CategoryController controller) {
+                      return productContainer(
+                        isButtonClicked: data.isBtnClicked,
+                        addToCartTap: () {
+                          controller.isButtonClicked(data);
+                        },
+                        incrementTap: () => controller.increaseQuantity(data),
+                        decrementTap: () => controller.decreaseQuantity(data),
+                        cartItem: data.proQuantity,
+                        proImage: "assets/images/apple.png",
+                        proDiscountImage: "assets/images/discount.png",
+                        proDiscount: data.discountType == "percentage"
+                            ? "${data.discountAmount}% OFF"
+                            : data.discountType == "fixedAmount"
+                                ? "TAKA ${data.discountAmount} OFF"
+                                : null,
+                        plasticStatus: data.isPlastic!
+                            ? data.plasticType!.name!
+                            : "PLASTIC FREE",
+                        proStock: data.quantity!,
+                        proName: "${data.name}",
+                        proWeight: data.productWeight,
+                        proNewPrice: "${data.price}",
+                        proOldPrice: "150",
+                      );
+                    });
                   },
                 );
               }
