@@ -56,10 +56,10 @@ class CategoryController extends GetxController {
         fetchData();
         break;
       case SortOrder.priceLowToHigh:
-        products.sort((a, b) => a.price.compareTo(b.price));
+        products.sort((a, b) => a.price!.compareTo(b.price!));
         break;
       case SortOrder.priceHighToLow:
-        products.sort((a, b) => b.price.compareTo(a.price));
+        products.sort((a, b) => b.price!.compareTo(a.price!));
         break;
     }
   }

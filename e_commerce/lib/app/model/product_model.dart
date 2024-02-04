@@ -32,13 +32,13 @@ class ProductModel {
   });
 
   final String? id;
-  final Employee? employee;
+  final String? employee;
   final Brand? brand;
   final Category? category;
-  final Subcategory? subcategory;
+  final Category? subcategory;
   final String? name;
   final int? sku;
-  final dynamic price;
+  final int? price;
   final String? shortDescription;
   final String? description;
   final int? quantity;
@@ -54,24 +54,23 @@ class ProductModel {
   final DateTime? updatedAt;
   final int? v;
   final Brand? plasticType;
-  final dynamic weight;
+  final int? weight;
   final String? discountType;
-  final dynamic discountAmount;
-  int proQuantity = 1;
+  final int? discountAmount;
+  int proQuantity;
   dynamic totalPrice;
   bool isBtnClicked;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json["_id"],
-      employee:
-          json["employee"] == null ? null : Employee.fromJson(json["employee"]),
+      employee: json["employee"],
       brand: json["brand"] == null ? null : Brand.fromJson(json["brand"]),
       category:
           json["category"] == null ? null : Category.fromJson(json["category"]),
       subcategory: json["subcategory"] == null
           ? null
-          : Subcategory.fromJson(json["subcategory"]),
+          : Category.fromJson(json["subcategory"]),
       name: json["name"],
       sku: json["sku"],
       price: json["price"],
@@ -135,6 +134,7 @@ class Category {
     required this.isActive,
     required this.isDiscount,
     required this.v,
+    required this.category,
   });
 
   final String? id;
@@ -144,6 +144,7 @@ class Category {
   final bool? isActive;
   final bool? isDiscount;
   final int? v;
+  final String? category;
 
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
@@ -154,73 +155,7 @@ class Category {
       isActive: json["isActive"],
       isDiscount: json["isDiscount"],
       v: json["__v"],
-    );
-  }
-}
-
-class Employee {
-  Employee({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.password,
-    required this.level,
-    required this.image,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.v,
-  });
-
-  final String? id;
-  final String? name;
-  final String? email;
-  final String? password;
-  final String? level;
-  final String? image;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-  final int? v;
-
-  factory Employee.fromJson(Map<String, dynamic> json) {
-    return Employee(
-      id: json["_id"],
-      name: json["name"],
-      email: json["email"],
-      password: json["password"],
-      level: json["level"],
-      image: json["image"],
-      createdAt: DateTime.tryParse(json["createdAt"] ?? ""),
-      updatedAt: DateTime.tryParse(json["updatedAt"] ?? ""),
-      v: json["__v"],
-    );
-  }
-}
-
-class Subcategory {
-  Subcategory({
-    required this.id,
-    required this.category,
-    required this.name,
-    required this.precedence,
-    required this.isActive,
-    required this.v,
-  });
-
-  final String? id;
-  final String? category;
-  final String? name;
-  final int? precedence;
-  final bool? isActive;
-  final int? v;
-
-  factory Subcategory.fromJson(Map<String, dynamic> json) {
-    return Subcategory(
-      id: json["_id"],
       category: json["category"],
-      name: json["name"],
-      precedence: json["precedence"],
-      isActive: json["isActive"],
-      v: json["__v"],
     );
   }
 }
