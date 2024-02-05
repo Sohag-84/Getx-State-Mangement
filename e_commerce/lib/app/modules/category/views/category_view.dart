@@ -44,7 +44,7 @@ class CategoryView extends GetView<CategoryController> {
         child: GetBuilder(builder: (CategoryController controller) {
           return Column(
             children: [
-              sortDropdownWidget(controller:controller),
+              sortDropdownWidget(controller: controller),
               SizedBox(height: 10.h),
               Expanded(
                 child: Obx(() {

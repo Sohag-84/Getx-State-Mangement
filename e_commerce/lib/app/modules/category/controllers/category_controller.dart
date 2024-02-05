@@ -30,7 +30,7 @@ class CategoryController extends GetxController {
   }
 
   Future<List<ProductModel>> fetchedProduct() async {
-    String url = "${AppConfig.baseURL}productGroup/products";
+    String url = "${AppConfig.baseURL}productGroup/products/appTestProducts";
 
     try {
       http.Response response = await http.get(Uri.parse(url));

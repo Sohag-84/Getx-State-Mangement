@@ -38,7 +38,7 @@ class ProductModel {
   final Category? subcategory;
   final String? name;
   final int? sku;
-  final int? price;
+  final dynamic price;
   final String? shortDescription;
   final String? description;
   final int? quantity;
@@ -54,9 +54,9 @@ class ProductModel {
   final DateTime? updatedAt;
   final int? v;
   final Brand? plasticType;
-  final int? weight;
+  final dynamic weight;
   final String? discountType;
-  final int? discountAmount;
+  final dynamic discountAmount;
   int proQuantity;
   dynamic totalPrice;
   bool isBtnClicked;
