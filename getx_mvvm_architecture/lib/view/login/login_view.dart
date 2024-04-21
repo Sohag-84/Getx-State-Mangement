@@ -70,13 +70,20 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               const SizedBox(height: 30),
-              RoundButton(
-                onTap: () {
-                  if (_formKey.currentState!.validate()) {}
-                },
-                title: "Login",
-                height: 40,
-                width: 250,
+              Obx(
+                () {
+                  return RoundButton(
+                    isLoading: loginVM.isLoading.value,
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        loginVM.loginApi();
+                      }
+                    },
+                    title: "Login",
+                    height: 40,
+                    width: 250,
+                  );
+                }
               ),
             ],
           ),

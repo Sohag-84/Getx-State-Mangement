@@ -29,8 +29,6 @@ class NetworkApiServices extends BaseApiServices {
   ///for post api
   @override
   Future<dynamic> postApi({required var data, required String url}) async {
-    log("API URL: $url");
-    log("Data: $data");
     dynamic responseJson;
     try {
       final response = await http
@@ -39,7 +37,7 @@ class NetworkApiServices extends BaseApiServices {
 
             ///for raw data-> you have to use jsonEncode(data)
             ///for form data-> you don't need to use jsonEncode(data)
-            body: jsonEncode(data),
+            body: data,
           )
           .timeout(
             const Duration(seconds: 10),
@@ -50,7 +48,7 @@ class NetworkApiServices extends BaseApiServices {
     } on RequestTimeOut {
       throw RequestTimeOut("");
     }
-
+    log("Api response json data: $responseJson");
     return responseJson;
   }
 
@@ -58,11 +56,12 @@ class NetworkApiServices extends BaseApiServices {
   dynamic returnResponse({required http.Response response}) {
     switch (response.statusCode) {
       case 200:
-        final responseJson = jsonDecode(response.body);
+        dynamic responseJson = jsonDecode(response.body);
         return responseJson;
 
       case 400:
-        throw InvalidUrlException;
+        dynamic responseJson = jsonDecode(response.body);
+        return responseJson;
       default:
         throw FetchedDataException(" ${response.statusCode}");
     }

@@ -8,31 +8,47 @@ class RoundButton extends StatelessWidget {
   final String title;
   final double height;
   final double width;
+  final bool isLoading;
   const RoundButton({
     Key? key,
     required this.onTap,
     required this.title,
     required this.height,
     required this.width,
+    this.isLoading = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        height: height,
-        width: width,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: AppColors.primaryColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Text(
-          title,
-          style: const TextStyle(color: AppColors.whiteColor),
-        ),
-      ),
-    );
+    return isLoading
+        ? Container(
+            height: height,
+            width: width,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Text(
+              "Loading....",
+              style: TextStyle(color: AppColors.whiteColor),
+            ),
+          )
+        : InkWell(
+            onTap: onTap,
+            child: Container(
+              height: height,
+              width: width,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Text(
+                title,
+                style: const TextStyle(color: AppColors.whiteColor),
+              ),
+            ),
+          );
   }
 }
