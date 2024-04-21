@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm_architecture/res/localization/languages.dart';
+import 'package:getx_mvvm_architecture/res/routes/colors/app_colors.dart';
 import 'package:getx_mvvm_architecture/res/routes/routes.dart';
 
 void main() {
@@ -19,16 +20,12 @@ class MyApp extends StatelessWidget {
       locale: const Locale("en", "US"),
       fallbackLocale: const Locale("en", "US"),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+          colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+          useMaterial3: false,
+          appBarTheme: const AppBarTheme(
+            centerTitle: true,
+          )),
       getPages: AppRoutes.appRoutes(),
     );
   }
 }
-
-///mvvm 
-///m=>model
-///v=>view
-///v=>view model
-///m =>model view

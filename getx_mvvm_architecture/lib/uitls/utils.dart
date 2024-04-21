@@ -5,13 +5,13 @@ import 'package:getx_mvvm_architecture/res/routes/colors/app_colors.dart';
 
 class Utils {
   ///to change textfield keyboard [focus]
-  static void fieldFocusChnage(
+  static void fieldFocusChange(
     BuildContext context,
     FocusNode current,
     FocusNode nextFocus,
   ) {
     current.unfocus();
-    Focus.of(context).requestFocus(nextFocus);
+    FocusScope.of(context).requestFocus(nextFocus);
   }
 
   ///for show [toast] message
