@@ -26,3 +26,9 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+///mvvm 
+///m=>model
+///v=>view
+///v=>view model
+///m =>model view
