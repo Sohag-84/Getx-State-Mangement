@@ -8,7 +8,7 @@ class SplashServices {
     UserPreferences userPreferences = UserPreferences();
 
     userPreferences.getUser().then((value) {
-      if (value.token!.isEmpty || value.token.toString() == 'null') {
+      if (value.token.toString() == 'null' || value.token.toString().isEmpty) {
         Future.delayed(
           const Duration(seconds: 2),
           () {
