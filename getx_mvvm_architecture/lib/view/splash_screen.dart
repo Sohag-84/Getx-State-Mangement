@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_mvvm_architecture/data/app_exceptions.dart';
+import 'package:getx_mvvm_architecture/res/components/general_exception_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -25,6 +26,9 @@ class _SplashScreenState extends State<SplashScreen> {
           throw InternetException("No internet connection");
         },
         child: const Icon(Icons.add),
+      ),
+      body: GeneralExceptionWidget(
+        onTap: () {},
       ),
     );
   }
