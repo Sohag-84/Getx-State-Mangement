@@ -1,3 +1,5 @@
+// ignore_for_file: annotate_overrides, prefer_typing_uninitialized_variables
+
 class AppExceptions implements Exception {
   final message;
   final prefix;
